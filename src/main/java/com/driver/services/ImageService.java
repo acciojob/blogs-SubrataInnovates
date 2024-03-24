@@ -1,7 +1,9 @@
 package com.driver.services;
 
-import com.driver.models.*;
-import com.driver.repositories.*;
+import com.driver.models.Blog;
+import com.driver.models.Image;
+import com.driver.repositories.BlogRepository;
+import com.driver.repositories.ImageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,36 +13,34 @@ import java.util.List;
 public class ImageService {
 
     @Autowired
-    BlogRepository blogRepository2;
+    private BlogRepository blogRepository;
+    
     @Autowired
-    ImageRepository imageRepository2;
+    private ImageRepository imageRepository;
 
-    public Image addImage(Integer blogId, String description, String dimensions)
-    {
-    	Blog blog = blogRepository2.findById(blogId).orElse(null);
-    	Image image=new Image();
-    	image.setDescriptions(description);
-    	image.setDimensions(dimensions);
-    	image.setBlog(blog);
-    	return imageRepository2.save(image);
-        
-
+    public Image addImage(Integer blogId, String description, String dimensions) {
+        Blog blog = blogRepository.findById(blogId).orElse(null);
+        if (blog != null) {
+            Image image = new Image();
+            image.setDescription(description);
+            image.setDimensions(dimensions);
+            image.setBlog(blog);
+            return imageRepository.save(image);
+        }
+        return null;
     }
 
-    public void deleteImage(Integer id)
-    {
-    	imageRepository2.deleteById(id);
-
+    public void deleteImage(Integer id) {
+        imageRepository.deleteById(id);
     }
 
-   
-    public int countImagesInScreen(Integer id, String screenDimensions) {
+    public int calculateMaxImageCountOnScreen(Integer blogId, String screenDimensions) {
         try {
             String[] dimensions = screenDimensions.split("x");
             int screenWidth = Integer.parseInt(dimensions[0]);
             int screenHeight = Integer.parseInt(dimensions[1]);
 
-            Blog blog = blogRepository2.findById(id).orElse(null);
+            Blog blog = blogRepository.findById(blogId).orElse(null);
             if (blog != null) {
                 List<Image> images = blog.getImage();
                 if (!images.isEmpty()) {
@@ -67,7 +67,4 @@ public class ImageService {
 
         return 0; // Default value if there's an error or no images can fit on the screen
     }
-
-
-    
 }

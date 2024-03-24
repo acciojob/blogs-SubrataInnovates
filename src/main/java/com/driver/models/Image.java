@@ -12,61 +12,65 @@ public class Image {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer imageId;
-    private String descriptions;
+    private String description;
     private String dimensions;
 
     @JoinColumn
     @ManyToOne
     private Blog blog;
 
-    public Integer getImageId() {
-        return imageId;
-    }
+	public Integer getImageId() {
+		return imageId;
+	}
 
-    public void setImageId(Integer imageId) {
-        this.imageId = imageId;
-    }
+	public void setImageId(Integer imageId) {
+		this.imageId = imageId;
+	}
 
-    public String getDescriptions() {
-        return descriptions;
-    }
+	public String getDescription() {
+		return description;
+	}
 
-    public void setDescriptions(String descriptions) {
-        this.descriptions = descriptions;
-    }
+	public void setDescription(String description) {
+		this.description = description;
+	}
 
-    public String getDimensions() {
-        return dimensions;
-    }
+	public String getDimensions() {
+		return dimensions;
+	}
 
-    public void setDimensions(String dimensions) {
-        this.dimensions = dimensions;
-    }
+	public void setDimensions(String dimensions) {
+		this.dimensions = dimensions;
+	}
 
-    public Blog getBlog() {
-        return blog;
-    }
+	public Blog getBlog() {
+		return blog;
+	}
 
-    public void setBlog(Blog blog) {
-        this.blog = blog;
-    }
+	public void setBlog(Blog blog) {
+		this.blog = blog;
+	}
 
-    @Override
-    public String toString() {
-        return "Image [imageId=" + imageId + ", descriptions=" + descriptions + ", dimensions=" + dimensions
-                + ", blog=" + blog + "]";
-    }
+	@Override
+	public String toString() {
+		return "Image [imageId=" + imageId + ", description=" + description + ", dimensions=" + dimensions + ", blog="
+				+ blog + "]";
+	}
 
-    public Image(Integer imageId, String descriptions, String dimensions, Blog blog) {
-        super();
-        this.imageId = imageId;
-        this.descriptions = descriptions;
-        this.dimensions = dimensions;
-        this.blog = blog;
-    }
+	public Image(Integer imageId, String description, String dimensions, Blog blog) {
+		super();
+		this.imageId = imageId;
+		this.description = description;
+		this.dimensions = dimensions;
+		this.blog = blog;
+	}
 
-    public Image() {
-        super();
-    }
+	public Image() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+    
+  
 }
 
