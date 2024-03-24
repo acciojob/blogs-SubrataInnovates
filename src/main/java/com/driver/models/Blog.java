@@ -7,89 +7,80 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
-
-
 @Entity
+public class Blog {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer blogId;
+    private String title;
+    private String content;
 
-public class Blog
-{
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer blogId;
-	private String title;
-	private String content;
-	@JoinColumn
-	@ManyToOne
-	private User user;
-	
-	@OneToMany(mappedBy = "blog")
-	private List<Image> image;
+    @JoinColumn
+    @ManyToOne
+    private User user;
 
-	public Integer getBlogId() {
-		return blogId;
-	}
+    @OneToMany(mappedBy = "blog")
+    private List<Image> image;
 
-	public void setBlogId(Integer blogId) {
-		this.blogId = blogId;
-	}
+    public Integer getBlogId() {
+        return blogId;
+    }
 
-	public String getTitle() {
-		return title;
-	}
+    public void setBlogId(Integer blogId) {
+        this.blogId = blogId;
+    }
 
-	public void setTitle(String title) {
-		this.title = title;
-	}
+    public String getTitle() {
+        return title;
+    }
 
-	public String getContent() {
-		return content;
-	}
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
-	public void setContent(String content) {
-		this.content = content;
-	}
+    public String getContent() {
+        return content;
+    }
 
-	public User getUser() {
-		return user;
-	}
+    public void setContent(String content) {
+        this.content = content;
+    }
 
-	public void setUser(User user) {
-		this.user = user;
-	}
+    public User getUser() {
+        return user;
+    }
 
-	public List<Image> getImage() {
-		return image;
-	}
+    public void setUser(User user) {
+        this.user = user;
+    }
 
-	public void setImage(List<Image> image) {
-		this.image = image;
-	}
+    public List<Image> getImage() {
+        return image;
+    }
 
-	@Override
-	public String toString() {
-		return "Blog [blogId=" + blogId + ", title=" + title + ", content=" + content + ", user=" + user + ", image="
-				+ image + "]";
-	}
+    public void setImage(List<Image> image) {
+        this.image = image;
+    }
 
-	public Blog(Integer blogId, String title, String content, User user, List<Image> image) {
-		super();
-		this.blogId = blogId;
-		this.title = title;
-		this.content = content;
-		this.user = user;
-		this.image = image;
-	}
+    @Override
+    public String toString() {
+        return "Blog [blogId=" + blogId + ", title=" + title + ", content=" + content + ", user=" + user + ", image="
+                + image + "]";
+    }
 
-	public Blog() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-	
-	
-	
-	
+    public Blog(Integer blogId, String title, String content, User user, List<Image> image) {
+        super();
+        this.blogId = blogId;
+        this.title = title;
+        this.content = content;
+        this.user = user;
+        this.image = image;
+    }
+
+    public Blog() {
+        super();
+    }
 }
