@@ -34,7 +34,7 @@ public class ImageService {
         imageRepository.deleteById(id);
     }
 
-    public int calculateMaxImageCountOnScreen(Integer blogId, String screenDimensions) {
+    public int countImagesInScreen(Integer blogId, String screenDimensions) {
         try {
             String[] dimensions = screenDimensions.split("x");
             int screenWidth = Integer.parseInt(dimensions[0]);
