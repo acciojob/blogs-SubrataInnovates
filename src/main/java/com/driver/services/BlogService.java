@@ -9,6 +9,8 @@ import com.driver.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import static org.hamcrest.CoreMatchers.nullValue;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -21,13 +23,27 @@ public class BlogService {
     @Autowired
     UserRepository userRepository1;
 
-    public Blog createAndReturnBlog(Integer userId, String title, String content) {
-        //create a blog at the current time
-
+    public Blog createAndReturnBlog(Integer userId, String title, String content)
+    {
+        
+    	User user = userRepository1.findById(userId).orElse(null);
+    	if(user==null)
+    	{
+    		return null;
+    	}
+    	
+    	Blog blog=new Blog();
+    	blog.setTitle(title);
+    	blog.setContent(content);
+    	blog.setUser(user);
+    	
+    	
+    	return blogRepository1.save(blog);
     }
 
-    public void deleteBlog(int blogId){
-        //delete blog and corresponding images
+    public void deleteBlog(int blogId)
+    {
+       blogRepository1.deleteById(blogId);
 
     }
 }

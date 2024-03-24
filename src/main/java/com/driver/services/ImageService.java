@@ -15,17 +15,50 @@ public class ImageService {
     @Autowired
     ImageRepository imageRepository2;
 
-    public Image addImage(Integer blogId, String description, String dimensions){
-        //add an image to the blog
+    public Image addImage(Integer blogId, String description, String dimensions)
+    {
+    	Blog blog = blogRepository2.findById(blogId).orElse(null);
+    	Image image=new Image();
+    	image.setDescriptions(description);
+    	image.setDimenstions(dimensions);
+    	image.setBlog(blog);
+    	return imageRepository2.save(image);
+        
 
     }
 
-    public void deleteImage(Integer id){
+    public void deleteImage(Integer id)
+    {
+    	imageRepository2.deleteById(id);
 
     }
 
-    public int countImagesInScreen(Integer id, String screenDimensions) {
-        //Find the number of images of given dimensions that can fit in a screen having `screenDimensions`
+    public int countImagesInScreen(Integer id, String screenDimensions)
+    {
+    	
+        String[] dimensions = screenDimensions.split("x");
+        int screenWidth = Integer.parseInt(dimensions[0]);
+        int screenHeight = Integer.parseInt(dimensions[1]);
 
+        Blog blog = blogRepository2.findById(id).orElse(null);
+        if (blog != null) {
+            List<Image> images = blog.getImage();
+            if (!images.isEmpty()) {
+                Image sampleImage = images.get(0);
+                if (sampleImage != null && sampleImage.getDimenstions() != null) {
+                    String[] imageDimensions = sampleImage.getDimenstions().split("x");
+                    int imageWidth = Integer.parseInt(imageDimensions[0]);
+                    int imageHeight = Integer.parseInt(imageDimensions[1]);
+                    int horizontalCount = screenWidth / imageWidth;
+                    int verticalCount = screenHeight / imageHeight;
+                    return horizontalCount * verticalCount;
+                }
+            }
+        }
+
+        return 0;
     }
+
+
+    
 }
