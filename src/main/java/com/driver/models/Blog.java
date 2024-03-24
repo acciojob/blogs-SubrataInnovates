@@ -14,7 +14,7 @@ import javax.persistence.OneToMany;
 public class Blog {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer blogId;
+    private Integer id;
     private String title;
     private String content;
 
@@ -25,12 +25,12 @@ public class Blog {
     @OneToMany(mappedBy = "blog")
     private List<Image> image;
 
-    public Integer getBlogId() {
-        return blogId;
+    public Integer getid() {
+        return id;
     }
 
-    public void setBlogId(Integer blogId) {
-        this.blogId = blogId;
+    public void setid(Integer id) {
+        this.id = id;
     }
 
     public String getTitle() {
@@ -67,13 +67,13 @@ public class Blog {
 
     @Override
     public String toString() {
-        return "Blog [blogId=" + blogId + ", title=" + title + ", content=" + content + ", user=" + user + ", image="
+        return "Blog [id=" + id + ", title=" + title + ", content=" + content + ", user=" + user + ", image="
                 + image + "]";
     }
 
-    public Blog(Integer blogId, String title, String content, User user, List<Image> image) {
+    public Blog(Integer id, String title, String content, User user, List<Image> image) {
         super();
-        this.blogId = blogId;
+        this.id = id;
         this.title = title;
         this.content = content;
         this.user = user;

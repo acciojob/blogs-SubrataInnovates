@@ -9,16 +9,16 @@ import javax.persistence.Id;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer userId;
+    private Integer id;
     private String username;
     private String password;
 
-    public Integer getUserId() {
-        return userId;
+    public Integer getid() {
+        return id;
     }
 
-    public void setUserId(Integer userId) {
-        this.userId = userId;
+    public void setid(Integer id) {
+        this.id = id;
     }
 
     public String getUsername() {
@@ -39,12 +39,12 @@ public class User {
 
     @Override
     public String toString() {
-        return "User [userId=" + userId + ", username=" + username + ", password=" + password + "]";
+        return "User [id=" + id + ", username=" + username + ", password=" + password + "]";
     }
 
-	public User(Integer userId, String username, String password) {
+	public User(Integer id, String username, String password) {
 		super();
-		this.userId = userId;
+		this.id = id;
 		this.username = username;
 		this.password = password;
 	}

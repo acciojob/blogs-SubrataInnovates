@@ -11,7 +11,7 @@ import javax.persistence.ManyToOne;
 public class Image {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer imageId;
+    private Integer id;
     private String description;
     private String dimensions;
 
@@ -19,12 +19,12 @@ public class Image {
     @ManyToOne
     private Blog blog;
 
-	public Integer getImageId() {
-		return imageId;
+	public Integer getid() {
+		return id;
 	}
 
-	public void setImageId(Integer imageId) {
-		this.imageId = imageId;
+	public void setid(Integer id) {
+		this.id = id;
 	}
 
 	public String getDescription() {
@@ -53,13 +53,13 @@ public class Image {
 
 	@Override
 	public String toString() {
-		return "Image [imageId=" + imageId + ", description=" + description + ", dimensions=" + dimensions + ", blog="
+		return "Image [id=" + id + ", description=" + description + ", dimensions=" + dimensions + ", blog="
 				+ blog + "]";
 	}
 
-	public Image(Integer imageId, String description, String dimensions, Blog blog) {
+	public Image(Integer id, String description, String dimensions, Blog blog) {
 		super();
-		this.imageId = imageId;
+		this.id = id;
 		this.description = description;
 		this.dimensions = dimensions;
 		this.blog = blog;
