@@ -16,9 +16,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
+
 public class Blog
 {
 	@Id
@@ -32,5 +30,68 @@ public class Blog
 	
 	@OneToMany(mappedBy = "blog")
 	private List<Image> image;
+
+	public Integer getBlogId() {
+		return blogId;
+	}
+
+	public void setBlogId(Integer blogId) {
+		this.blogId = blogId;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public String getContent() {
+		return content;
+	}
+
+	public void setContent(String content) {
+		this.content = content;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public List<Image> getImage() {
+		return image;
+	}
+
+	public void setImage(List<Image> image) {
+		this.image = image;
+	}
+
+	@Override
+	public String toString() {
+		return "Blog [blogId=" + blogId + ", title=" + title + ", content=" + content + ", user=" + user + ", image="
+				+ image + "]";
+	}
+
+	public Blog(Integer blogId, String title, String content, User user, List<Image> image) {
+		super();
+		this.blogId = blogId;
+		this.title = title;
+		this.content = content;
+		this.user = user;
+		this.image = image;
+	}
+
+	public Blog() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	
+	
+	
 	
 }
