@@ -1,11 +1,7 @@
+// Image.java
 package com.driver.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 @Entity
 public class Image {
@@ -15,62 +11,49 @@ public class Image {
     private String description;
     private String dimensions;
 
-    @JoinColumn
     @ManyToOne
     private Blog blog;
 
-	public Integer getId() {
-		return id;
-	}
+   
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
+    public Image() {
+    }
 
-	public String getDescription() {
-		return description;
-	}
+    public Image(String description, String dimensions, Blog blog) {
+        this.description = description;
+        this.dimensions = dimensions;
+        this.blog = blog;
+    }
 
-	public void setDescription(String description) {
-		this.description = description;
-	}
+    public Integer getId() {
+        return id;
+    }
 
-	public String getDimensions() {
-		return dimensions;
-	}
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-	public void setDimensions(String dimensions) {
-		this.dimensions = dimensions;
-	}
+    public String getDescription() {
+        return description;
+    }
 
-	public Blog getBlog() {
-		return blog;
-	}
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
-	public void setBlog(Blog blog) {
-		this.blog = blog;
-	}
+    public String getDimensions() {
+        return dimensions;
+    }
 
-	@Override
-	public String toString() {
-		return "Image [id=" + id + ", description=" + description + ", dimensions=" + dimensions + ", blog="
-				+ blog + "]";
-	}
+    public void setDimensions(String dimensions) {
+        this.dimensions = dimensions;
+    }
 
-	public Image(Integer id, String description, String dimensions, Blog blog) {
-		super();
-		this.id = id;
-		this.description = description;
-		this.dimensions = dimensions;
-		this.blog = blog;
-	}
+    public Blog getBlog() {
+        return blog;
+    }
 
-	public Image() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
-    
-  
+    public void setBlog(Blog blog) {
+        this.blog = blog;
+    }
 }
-

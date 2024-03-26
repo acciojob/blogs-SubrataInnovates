@@ -14,7 +14,7 @@ public class ImageService {
 
     @Autowired
     private BlogRepository blogRepository;
-    
+
     @Autowired
     private ImageRepository imageRepository;
 
@@ -42,7 +42,7 @@ public class ImageService {
 
             Blog blog = blogRepository.findById(blogId).orElse(null);
             if (blog != null) {
-                List<Image> images = blog.getImage();
+                List<Image> images = blog.getImageList();
                 if (!images.isEmpty()) {
                     Image sampleImage = images.get(0);
                     if (sampleImage != null && sampleImage.getDimensions() != null) {
@@ -50,7 +50,7 @@ public class ImageService {
                         int imageWidth = Integer.parseInt(imageDimensions[0]);
                         int imageHeight = Integer.parseInt(imageDimensions[1]);
 
-                        // Ensure imageWidth and imageHeight are not zero to avoid division by zero
+                        
                         if (imageWidth != 0 && imageHeight != 0) {
                             int horizontalCount = screenWidth / imageWidth;
                             int verticalCount = screenHeight / imageHeight;
@@ -60,11 +60,10 @@ public class ImageService {
                 }
             }
         } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
-            // Log the error or handle it appropriately.
-            e.printStackTrace(); // Or log it using your preferred logging framework.
-            // Return a default value or handle the error case based on your application's requirements.
+           
+            e.printStackTrace(); 
         }
 
-        return 0; // Default value if there's an error or no images can fit on the screen
+        return 0; 
     }
 }

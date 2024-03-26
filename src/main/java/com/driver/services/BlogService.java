@@ -1,7 +1,6 @@
 package com.driver.services;
 
 import com.driver.models.Blog;
-import com.driver.models.Image;
 import com.driver.models.User;
 import com.driver.repositories.BlogRepository;
 import com.driver.repositories.ImageRepository;
@@ -9,41 +8,39 @@ import com.driver.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import static org.hamcrest.CoreMatchers.nullValue;
-
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 @Service
 public class BlogService {
-    @Autowired
-    BlogRepository blogRepository1;
 
     @Autowired
-    UserRepository userRepository1;
+    private BlogRepository blogRepository;
 
-    public Blog createAndReturnBlog(Integer userId, String title, String content)
-    {
+    @Autowired
+    private UserRepository userRepository;
+
+    @Autowired ImageRepository imageRepository;
+    public Blog createAndReturnBlog(Integer userId, String title, String content) {
         
-    	User user = userRepository1.findById(userId).orElse(null);
-    	if(user==null)
-    	{
-    		return null;
-    	}
-    	
-    	Blog blog=new Blog();
-    	blog.setTitle(title);
-    	blog.setContent(content);
-    	blog.setUser(user);
-    	
-    	
-    	return blogRepository1.save(blog);
+        User user = userRepository.findById(userId).orElse(null);
+        
+        
+        if (user != null) {
+            
+            Blog blog = new Blog();
+            blog.setTitle(title);
+            blog.setContent(content);
+            blog.setUser(user);
+            blog.setPubDate(new Date());
+            blog.setImageList(imageRepository.findByBlog(blog));
+            
+            return blogRepository.save(blog);
+        }
+        return null;
     }
 
-    public void deleteBlog(int blogId)
-    {
-       blogRepository1.deleteById(blogId);
-
+    public void deleteBlog(int blogId) {
+      
+        blogRepository.deleteById(blogId);
     }
 }

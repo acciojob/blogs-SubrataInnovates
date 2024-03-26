@@ -21,6 +21,7 @@ public class UserService {
     	User user=new User();
     	user.setUsername(username);
     	user.setPassword(password);
+    	user.setBlogList(new ArrayList<>());
     	
     	return userRepository3.save(user);
     }
