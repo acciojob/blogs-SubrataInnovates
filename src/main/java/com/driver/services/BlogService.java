@@ -22,7 +22,7 @@ public class BlogService {
 
     @Autowired ImageRepository imageRepository;
     public Blog createAndReturnBlog(Integer userId, String title, String content) {
-        User user = userRepository.findById(userId).orElse(null);
+        User user = userRepository.findById(userId).get();
         if (user != null) {
             Blog blog = new Blog();
             blog.setTitle(title);
