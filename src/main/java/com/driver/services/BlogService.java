@@ -8,6 +8,7 @@ import com.driver.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 @Service
@@ -21,19 +22,14 @@ public class BlogService {
 
     @Autowired ImageRepository imageRepository;
     public Blog createAndReturnBlog(Integer userId, String title, String content) {
-        
         User user = userRepository.findById(userId).orElse(null);
-        
-        
         if (user != null) {
-            
             Blog blog = new Blog();
             blog.setTitle(title);
             blog.setContent(content);
             blog.setUser(user);
             blog.setPubDate(new Date());
-            blog.setImageList(imageRepository.findByBlog(blog));
-            
+            blog.setImageList(new ArrayList<>()); 
             return blogRepository.save(blog);
         }
         return null;
