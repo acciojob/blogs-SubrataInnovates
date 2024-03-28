@@ -1,32 +1,23 @@
-
 package com.driver.models;
 
 import javax.persistence.*;
-
-import org.hibernate.annotations.CreationTimestamp;
-import org.springframework.data.annotation.CreatedBy;
-
 import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table(name = "Blog")
 public class Blog {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String title;
     private String content;
-    @CreationTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
     private Date pubDate;
 
     @ManyToOne
-   
     private User user;
 
-    
     @OneToMany(mappedBy = "blog", cascade = CascadeType.ALL)
-
     private List<Image> imageList;
 
 	public Integer getId() {
@@ -77,25 +68,7 @@ public class Blog {
 		this.imageList = imageList;
 	}
 
-//	@Override
-//	public String toString() {
-//		return "Blog [id=" + id + ", title=" + title + ", content=" + content + ", pubDate=" + pubDate + ", user="
-//				+ user + ", imageList=" + imageList + "]";
-//	}
-
-	public Blog(Integer id, String title, String content, Date pubDate, User user, List<Image> imageList) {
-		
-		this.id = id;
-		this.title = title;
-		this.content = content;
-		this.pubDate = pubDate;
-		this.user = user;
-		this.imageList = imageList;
-	}
-
-	public Blog() {
-			}
-
-
+    // Getters and setters
     
 }
+

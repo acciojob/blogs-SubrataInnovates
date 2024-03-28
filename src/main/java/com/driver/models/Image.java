@@ -1,10 +1,8 @@
-// Image.java
 package com.driver.models;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name = "Image")
 public class Image {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -13,49 +11,41 @@ public class Image {
     private String dimensions;
 
     @ManyToOne
-    
     private Blog blog;
 
-   
+	public Integer getId() {
+		return id;
+	}
 
-    public Image() {
-    }
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
-    public Image(String description, String dimensions, Blog blog) {
-        this.description = description;
-        this.dimensions = dimensions;
-        this.blog = blog;
-    }
+	public String getDescription() {
+		return description;
+	}
 
-    public Integer getId() {
-        return id;
-    }
+	public void setDescription(String description) {
+		this.description = description;
+	}
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+	public String getDimensions() {
+		return dimensions;
+	}
 
-    public String getDescription() {
-        return description;
-    }
+	public void setDimensions(String dimensions) {
+		this.dimensions = dimensions;
+	}
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
+	public Blog getBlog() {
+		return blog;
+	}
 
-    public String getDimensions() {
-        return dimensions;
-    }
+	public void setBlog(Blog blog) {
+		this.blog = blog;
+	}
 
-    public void setDimensions(String dimensions) {
-        this.dimensions = dimensions;
-    }
-
-    public Blog getBlog() {
-        return blog;
-    }
-
-    public void setBlog(Blog blog) {
-        this.blog = blog;
-    }
+    // Getters and setters
+    
+    
 }
