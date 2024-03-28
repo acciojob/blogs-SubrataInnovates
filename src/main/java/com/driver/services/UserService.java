@@ -1,3 +1,4 @@
+// UserService.java
 package com.driver.services;
 
 import com.driver.models.User;
@@ -12,7 +13,9 @@ public class UserService {
     private UserRepository userRepository;
 
     public User createUser(String username, String password) {
-        User user = new User(username, password);
+        User user = new User(); // Use the default constructor
+        user.setUsername(username);
+        user.setPassword(password);
         return userRepository.save(user);
     }
 
